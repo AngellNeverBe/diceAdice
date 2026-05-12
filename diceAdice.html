@@ -1137,9 +1137,11 @@
         buildTableAndWalls();
 
         // ===================== 渲染循环 =====================
+        const physClock = new THREE.Clock();
         function animate() {
             requestAnimationFrame(animate);
-            world.step(1 / 60);
+            const dt = Math.min(physClock.getDelta(), 1 / 15);
+            world.step(1 / 60, dt, 10);
             diceObjects.forEach(obj => {
                 obj.mesh.position.copy(obj.body.position);
                 obj.mesh.quaternion.copy(obj.body.quaternion);

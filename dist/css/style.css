@@ -1,0 +1,310 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #0a0a14;
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#dicePanel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(10, 10, 25, 0.4);
+    border: 1px solid #334;
+    border-radius: 14px;
+    padding: 16px 18px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 220px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+}
+#dicePanel h3 {
+    margin: 0 0 4px 0;
+    color: #ffcc66;
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.theme-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+.theme-selector span {
+    color: #aabbdd;
+    font-size: 12px;
+    margin-right: 4px;
+}
+.theme-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    background: #333;
+}
+.theme-btn:hover {
+    transform: scale(1.2);
+    border-color: #fff;
+}
+.theme-btn.active {
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+.theme-btn[data-theme="base"]  { background: #bdc3c7; }
+.theme-btn[data-theme="red"]    { background: #e74c3c; }
+.theme-btn[data-theme="purple"] { background: #9b59b6; }
+.theme-btn[data-theme="green"]  { background: #2ecc71; }
+.theme-btn[data-theme="orange"] { background: #e67e22; }
+.theme-btn[data-theme="black"]  { background: #2c3e50; }
+.theme-btn[data-theme="blue"]   { background: #3498db; }
+
+.dice-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+.dice-label {
+    width: 36px;
+    color: #ccddff;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: right;
+    flex-shrink: 0;
+}
+.dice-label .icon {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+.btn-adjust {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #556;
+    background: #1a1a2e;
+    color: #ccddff;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 28px;
+    text-align: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    padding: 0;
+}
+.btn-adjust:hover {
+    background: #2a2a44;
+    border-color: #889;
+}
+.btn-adjust:active {
+    background: #ff8800;
+    color: #000;
+    border-color: #ffaa44;
+    transform: scale(0.93);
+}
+.btn-adjust.minus {
+    color: #ff7777;
+}
+.btn-adjust.plus {
+    color: #77ff77;
+}
+.dice-count {
+    width: 28px;
+    text-align: center;
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+.row-divider {
+    border: none;
+    border-top: 1px solid #222;
+    margin: 2px 0;
+}
+#totalInfo {
+    text-align: center;
+    color: #aabbdd;
+    font-size: 12px;
+    margin: 2px 0;
+}
+#totalInfo span {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 15px;
+}
+#btnThrow {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff8800;
+    background: linear-gradient(135deg, #ff6600, #ff8800);
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    margin-top: 4px;
+}
+#btnThrow:hover {
+    background: linear-gradient(135deg, #ff8800, #ffaa00);
+    border-color: #ffaa44;
+    box-shadow: 0 0 20px rgba(255, 136, 0, 0.5);
+    transform: translateY(-1px);
+}
+#btnThrow:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 8px rgba(255, 136, 0, 0.3);
+}
+#btnThrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #555;
+    background: #333;
+    color: #777;
+    box-shadow: none;
+    transform: none;
+}
+#btnClear {
+    width: 100%;
+    padding: 6px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: transparent;
+    color: #889;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+#btnClear:hover {
+    background: #1a1a2e;
+    color: #ccddff;
+    border-color: #666;
+}
+
+#diceResult {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ffd700;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 22px;
+    font-weight: bold;
+    display: none;
+    pointer-events: none;
+    z-index: 20;
+    max-width: 380px;
+    line-height: 1.5;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7);
+    border: 1px solid #333;
+    transition: opacity 0.3s;
+}
+#diceResult .result-list {
+    font-size: 16px;
+    color: #ddd;
+    font-weight: normal;
+    margin-bottom: 4px;
+}
+#diceResult .result-total {
+    font-size: 28px;
+    color: #ffd700;
+    text-align: center;
+    letter-spacing: 1px;
+}
+#diceResult .result-detail {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin: 1px 3px;
+    font-size: 14px;
+    color: #ffcc88;
+}
+#diceResult .result-detail.type-label {
+    color: #aaccee;
+    font-weight: bold;
+    background: transparent;
+    padding: 2px 4px;
+}
+
+#info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #8899bb;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    pointer-events: none;
+    z-index: 10;
+}
+#info b {
+    color: #ffcc66;
+}
+
+@media (max-width: 600px) {
+    #dicePanel {
+        top: 8px;
+        left: 8px;
+        padding: 10px 12px;
+        gap: 4px;
+        min-width: 160px;
+        border-radius: 10px;
+    }
+    #dicePanel h3 {
+        font-size: 13px;
+        margin-bottom: 2px;
+    }
+    .dice-row {
+        gap: 4px;
+    }
+    .dice-label {
+        font-size: 13px;
+        width: 28px;
+    }
+    .btn-adjust {
+        width: 26px;
+        height: 26px;
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .dice-count {
+        font-size: 14px;
+        width: 22px;
+    }
+    #btnThrow {
+        font-size: 14px;
+        padding: 8px;
+    }
+    #diceResult {
+        top: 8px;
+        right: 8px;
+        font-size: 16px;
+        padding: 10px 14px;
+        max-width: 240px;
+    }
+    #diceResult .result-total {
+        font-size: 22px;
+    }
+    #info {
+        bottom: 8px;
+        left: 8px;
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}

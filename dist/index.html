@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>diceAdice</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <div id="dicePanel">
+        <h3>🎲 骰子配置</h3>
+        <div class="theme-selector">
+            <span>主题：</span>
+            <button class="theme-btn active" data-theme="base" title="基础"></button>
+            <button class="theme-btn" data-theme="red" title="红色"></button>
+            <button class="theme-btn" data-theme="purple" title="紫色"></button>
+            <button class="theme-btn" data-theme="green" title="绿色"></button>
+            <button class="theme-btn" data-theme="orange" title="橙色"></button>
+            <button class="theme-btn" data-theme="black" title="黑色"></button>
+            <button class="theme-btn" data-theme="blue" title="蓝色"></button>
+        </div>
+
+        <div class="dice-row" data-dice-type="d20">
+            <span class="dice-label"><span class="icon">🔷</span>d20</span>
+            <button class="btn-adjust minus" data-action="minus">−</button>
+            <span class="dice-count" id="count-d20">1</span>
+            <button class="btn-adjust plus" data-action="plus">+</button>
+        </div>
+        <div class="dice-row" data-dice-type="d12">
+            <span class="dice-label"><span class="icon">🔶</span>d12</span>
+            <button class="btn-adjust minus" data-action="minus">−</button>
+            <span class="dice-count" id="count-d12">0</span>
+            <button class="btn-adjust plus" data-action="plus">+</button>
+        </div>
+        <div class="dice-row" data-dice-type="d10">
+            <span class="dice-label"><span class="icon">💠</span>d10</span>
+            <button class="btn-adjust minus" data-action="minus">−</button>
+            <span class="dice-count" id="count-d10">0</span>
+            <button class="btn-adjust plus" data-action="plus">+</button>
+        </div>
+        <div class="dice-row" data-dice-type="d8">
+            <span class="dice-label"><span class="icon">🔸</span>d8</span>
+            <button class="btn-adjust minus" data-action="minus">−</button>
+            <span class="dice-count" id="count-d8">0</span>
+            <button class="btn-adjust plus" data-action="plus">+</button>
+        </div>
+        <div class="dice-row" data-dice-type="d6">
+            <span class="dice-label"><span class="icon">🎯</span>d6</span>
+            <button class="btn-adjust minus" data-action="minus">−</button>
+            <span class="dice-count" id="count-d6">0</span>
+            <button class="btn-adjust plus" data-action="plus">+</button>
+        </div>
+        <div class="dice-row" data-dice-type="d4">
+            <span class="dice-label"><span class="icon">🔺</span>d4</span>
+            <button class="btn-adjust minus" data-action="minus">−</button>
+            <span class="dice-count" id="count-d4">0</span>
+            <button class="btn-adjust plus" data-action="plus">+</button>
+        </div>
+        <div id="totalInfo">骰子总数：<span id="totalCount">1</span></div>
+        <button id="btnThrow">⚡ 投 掷</button>
+        <button id="btnClear">清空全部</button>
+    </div>
+
+    <div id="diceResult">🎲 ?</div>
+
+    <div id="info">
+        ⌨️ 按 <b>空格键</b> 掷骰 | 点击 <b>+/−</b> 调整骰子数量<br>
+        最多同时投掷 <b>20</b> 个骰子 · 点击颜色按钮切换骰子主题
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+                "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+            }
+        }
+    </script>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
